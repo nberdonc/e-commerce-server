@@ -24,7 +24,7 @@ async function connecting() {
         await mongoose.connect('mongodb://127.0.0.1/newdatabase', { useUnifiedTopology: true, useNewUrlParser: true })
         console.log('Connected to the DB')
     } catch (error) {
-        console.log('ERROR: Seems like your DB is not running, please start it up !!!');
+        console.log('ERROR: Seems like your DB is not running, please start it up !!!', error.message);
     }
 }
 
@@ -50,7 +50,6 @@ app.post("/checkout",
 
     /////////////////// CHECK OUT USER /////////////////////
     async (req, res) => {
-        console.log("sectret key:", SECRET_KEY)
         console.log("request", req.body)
         const { id, amount, email } = req.body;
         try {
