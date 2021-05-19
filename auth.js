@@ -3,7 +3,6 @@ const { JWT_SECRET } = require('./config')
 
 const authenticateJWT = (req, res, next) => {
     const authHeader = req.headers.authorization;
-    console.log("authHeader form auth", authHeader)
     if (authHeader) {
         jwt.verify(authHeader, JWT_SECRET, (err, user) => {
             if (err || user.isAdmin === false) {

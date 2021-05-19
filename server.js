@@ -1,5 +1,5 @@
 const express = require('express');
-const port = process.env.PORT || 3000
+const port = process.env.PORT || 3010
 const { SECRET_KEY } = require('./config')
 const cors = require('cors')
 const Stripe = require('stripe')
@@ -73,6 +73,5 @@ app.post("/checkout",
         }
     })
 
-// Set the server to listen on port 3000
+// Set the server to listen on port 3010
 app.listen(port, () => console.log(`listening on port `, port))
-
