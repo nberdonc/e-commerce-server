@@ -1,6 +1,6 @@
 const express = require('express');
 const port = process.env.PORT || 3010
-const { SECRET_KEY, MONGODB_USER, MONGODB_PASSWORD, MONGODB_HOST } = require('./config')
+const { SECRET_KEY } = require('./config')
 const cors = require('cors')
 const Stripe = require('stripe')
 const stripe = new Stripe(SECRET_KEY);
@@ -18,19 +18,9 @@ app.use(cors())
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
-// connecting to mongo and checking if DB is running
-//async function connecting() {
-//    try {
-//        await mongoose.connect('mongodb://127.0.0.1/newdatabase', { useUnifiedTopology: true, useNewUrlParser: true })
-//        console.log('Connected to the DB')
-//    } catch (error) {
-//        console.log('ERROR: Seems like your DB is not running, please start it up !!!', error.message);
-//    }
-//}
-
 async function connecting() {
     try {
-        await mongoose.connect(`mongodb+srv://${MONGODB_USER}:${MONGODB_PASSWORD}@${MONGODB_HOST}`, { useUnifiedTopology: true, useNewUrlParser: true })
+        await mongoose.connect(`mongodb+srv://${process.env.MONGODB_USER}:${process.env.MONGODB_PASSWORD}@${process.env.MONGODB_HOST}`, { useUnifiedTopology: true, useNewUrlParser: true })
         console.log('Connected to the DB')
     } catch (error) {
         console.log('ERROR: Seems like your DB is not running, please start it up !!!', error.message);
